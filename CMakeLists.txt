@@ -3,4 +3,4 @@ project(novaShell C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(novaShell main.c)
+add_executable(novaShell main.c nvs.rc)
