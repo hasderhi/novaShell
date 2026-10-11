@@ -1,1 +1,21 @@
 IDI_ICON1 ICON DISCARDABLE "icon.ico"
+
+1 VERSIONINFO
+    FILEVERSION    0,0,1,0
+    PRODUCTVERSION 0,0,1,0
+{
+    BLOCK "StringFileInfo"
+    {
+        BLOCK "000004B0"
+        {
+            VALUE "CompanyName",        "tk_dev Software (tk-dev-software.com)\0"
+            VALUE "FileDescription",    "novaShell by tk_dev Software\0"
+            VALUE "OriginalFilename",   "novaShell.exe\0"
+            VALUE "ProductName",        "novaShell\0"
+        }
+    }
+    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x0000, 0x04B0
+    }
+}

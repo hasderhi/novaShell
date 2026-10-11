@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <stdio.h>
 #include <string.h>
+#include <io.h>
 
 
 
@@ -150,6 +151,16 @@ void custom_input(char *buffer, int size) {
     history_index = -1;
     buffer[0] = '\0';
 
+    if (!_isatty(_fileno(stdin))) {
+        if (fgets(buffer, size, stdin) != NULL) {
+            buffer[strcspn(buffer, "\r\n")] = '\0'; // strip newline
+        } else {
+            buffer[0] = '\0';
+        }
+        history_add(buffer);
+        return;
+    }
+
     while (1) {
         int ch = _getch();
 
@@ -264,7 +275,7 @@ struct Alias {
     {"clr", "cls"},
     {"date", "time"},
     {"pwd", "chdir"},
-    {NULL, NULL}
+    {nullptr, nullptr}
 };
 
 // ======= ALIAS SYSTEM =======
@@ -416,8 +427,8 @@ void builtin_cd(const char *path) {
 void builtin_nvs_help(void) {
     set_color(FOREGROUND_BLUE | FOREGROUND_RED);
     printf("\n"
-           "novaShell 0.0.1-alpha\n"
-           "For more info, please visit https://tk-dev-software.com/novaShell\n\n");
+           "novaShell 0.0.1\n"
+           "For more info, please visit https://tk-dev-software.com/software.novashell\n\n");
     set_color(FOREGROUND_GREEN | FOREGROUND_BLUE);
     printf("====== HELP ======\n"
         "Built-in commands:\n"
@@ -441,15 +452,19 @@ void builtin_nvs_help(void) {
 void builtin_nvs_about(void) {
     set_color(FOREGROUND_BLUE | FOREGROUND_RED);
     printf("\n"
-           "novaShell 0.0.1-alpha\n"
-           "By Tobias Kisling ('hasderhi', 'tk_dev')\n"
-           "For more info, please visit https://tk-dev-software.com/novaShell\n\n");
+           "novaShell 0.0.1\n"
+           "By Annabeth Kisling ('hasderhi', 'tk_dev')\n"
+           "For more info, please visit https://tk-dev-software.com/software.novashell\n\n");
 
     set_color(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 }
 
 // ======= MAIN SHELL =======
 int main(void) {
+    setvbuf(stdout, NULL, _IONBF, 0); // no buffering
+    setvbuf(stderr, NULL, _IONBF, 0);
+
+
     SetConsoleCtrlHandler(CtrlHandler, TRUE);
     SetConsoleTitle("novaShell");
 
@@ -457,7 +472,7 @@ int main(void) {
     int helpCmd = 0;
 
     set_color(FOREGROUND_BLUE | FOREGROUND_RED);
-    printf("novaShell 0.0.1-alpha\nType 'exit' to quit.\n");
+    printf("novaShell 0.0.2-alpha\nType 'exit' to quit.\n");
     set_color(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
     while (1) {
@@ -563,7 +578,7 @@ int main(void) {
     }
 
     set_color(FOREGROUND_BLUE | FOREGROUND_RED);
-    printf("novaShell exited.\n");
+    printf("novaShell exited. This window should close shortly.\n");
     set_color(FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN);
     return 0;
 }
