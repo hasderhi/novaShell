@@ -15,14 +15,14 @@ The long-term goal is to develop a **standalone GUI version in C++**.
 
 ## Features
 
-| 🚀 Feature         | Description                                                                 |
+| Feature         | Description                                                                 |
 |--------------------|-----------------------------------------------------------------------------|
-| 🔹 **Tab Autocomplete** | Type a shortcut and press `Tab` to expand it into a full command.           |
-| 🐧 **Linux Aliases**    | Use familiar Linux commands, automatically converted to Windows equivalents.|
-| ⏳ **Command History**  | Use arrow keys to navigate history or run `nvs-history` to list all.        |
-| 🎨 **Colored Output**   | Improves readability of terminal responses.                                 |
-| ⚙️ **Built-in Commands**| Enhanced internal handling of `cd`, `dir`, and others.                      |
-| 🧩 **Customizable**     | Easily extend autocomplete and alias features in `main.c`.                  |
+| **Tab Autocomplete** | Type a shortcut and press `Tab` to expand it into a full command.           |
+| **Linux Aliases**    | Use familiar Linux commands, automatically converted to Windows equivalents.|
+| **Command History**  | Use arrow keys to navigate history or run `nvs-history` to list all.        |
+| **Colored Output**   | Improves readability of terminal responses.                                 |
+| **Built-in Commands**| Enhanced internal handling of `cd`, `dir`, and others.                      |
+| **Customizable**     | Easily extend autocomplete and alias features in `main.c`.                  |
 
 ---
 
@@ -98,7 +98,7 @@ To add more aliases, include them in the `aliases` struct in `main.c`.
 ---
 
 <details>
-<summary>⚡ **Advanced Usage & Customization**</summary>
+<summary>**Advanced Usage & Customization**</summary>
 
 ### Adding New Autocomplete Shortcuts
 1. Open `main.c`.
